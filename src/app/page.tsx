@@ -15,11 +15,13 @@ import {
   Plus,
   Trash2,
   X,
+  ShieldAlert,
 } from "lucide-react";
 import { StatsCard } from "@/components/StatsCard";
 import { AlertsBanner } from "@/components/AlertsBanner";
 import { ProviderChart } from "@/components/ProviderChart";
 import { UsageChart } from "@/components/UsageChart";
+import { HazardAlerts } from "@/components/HazardAlerts";
 import { ThemeToggle } from "@/components/ThemeToggle";
 
 interface DashboardData {
@@ -93,7 +95,9 @@ export default function Dashboard() {
   const [providers, setProviders] = useState<Provider[]>([]);
   const [budgets, setBudgets] = useState<Budget[]>([]);
   const [loading, setLoading] = useState(true);
-  const [activeTab, setActiveTab] = useState<"dashboard" | "requests" | "settings">("dashboard");
+  const [activeTab, setActiveTab] = useState<
+    "dashboard" | "requests" | "alerts" | "settings"
+  >("dashboard");
 
   // Filters
   const [providerFilter, setProviderFilter] = useState("");
@@ -323,6 +327,17 @@ export default function Dashboard() {
               }`}
             >
               Requests
+            </button>
+            <button
+              onClick={() => setActiveTab("alerts")}
+              className={`py-4 px-1 border-b-2 font-medium text-sm ${
+                activeTab === "alerts"
+                  ? "border-blue-500 text-blue-600 dark:text-blue-400"
+                  : "border-transparent text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+              }`}
+            >
+              <ShieldAlert className="w-4 h-4 inline mr-1" />
+              Alerts
             </button>
             <button
               onClick={() => setActiveTab("settings")}
@@ -645,6 +660,9 @@ export default function Dashboard() {
             </div>
           </div>
         )}
+
+        {/* Hazard Alerts Tab */}
+        {activeTab === "alerts" && <HazardAlerts />}
 
         {/* Settings Tab */}
         {activeTab === "settings" && (
