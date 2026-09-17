@@ -93,7 +93,7 @@ export async function POST(req: Request) {
       completionTokens,
       totalTokens,
       cost,
-      promptPreview: promptPreview?.substring(0, 100),
+      promptPreview: promptPreview?.substring(0, 1000),
       responsePreview: responsePreview?.substring(0, 100),
     },
   });

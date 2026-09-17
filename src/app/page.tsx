@@ -337,7 +337,7 @@ export default function Dashboard() {
               }`}
             >
               <ShieldAlert className="w-4 h-4 inline mr-1" />
-              Alerts
+              Safety &amp; Alerts
             </button>
             <button
               onClick={() => setActiveTab("settings")}
